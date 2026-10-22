@@ -1,0 +1,275 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    /* Royal Blue, Crisp White & Radiant Gold Color Palette */
+    --primary-blue: #0b192c;
+    --royal-blue: #1e3e62;
+    --vibrant-blue: #2563eb;
+    --soft-blue: #eff6ff;
+    
+    --gold-primary: #d4af37;
+    --gold-light: #f7e7a9;
+    --gold-dark: #aa771c;
+    --gold-gradient: linear-gradient(135deg, #ffd700 0%, #d4af37 50%, #aa771c 100%);
+    --gold-glow: rgba(212, 175, 55, 0.35);
+
+    --pure-white: #ffffff;
+    --off-white: #f8fafc;
+    --text-primary: #0b192c;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --border-color: #e2e8f0;
+    
+    --success-green: #10b981;
+    --error-red: #ef4444;
+    
+    --card-shadow: 0 20px 45px rgba(11, 25, 44, 0.18), 0 0 0 1px rgba(212, 175, 55, 0.2);
+    --hover-shadow: 0 10px 25px rgba(212, 175, 55, 0.25);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    background: radial-gradient(circle at top, #1e3e62 0%, #0b192c 60%, #050b14 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+    padding: 24px 16px;
+    line-height: 1.6;
+}
+
+/* Header / Title */
+h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 24px;
+    text-align: center;
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.3));
+    position: relative;
+    padding-bottom: 12px;
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--gold-gradient);
+    border-radius: 999px;
+    box-shadow: 0 0 10px var(--gold-glow);
+}
+
+/* Main Quiz Container */
+#quiz {
+    background: var(--pure-white);
+    width: 100%;
+    max-width: 580px;
+    border-radius: 20px;
+    padding: 36px 32px;
+    box-shadow: var(--card-shadow);
+    border: 2px solid rgba(212, 175, 55, 0.4);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    transition: var(--transition);
+}
+
+#quiz::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: var(--gold-gradient);
+}
+
+/* Question Header */
+#question, h2 {
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--primary-blue);
+    margin-bottom: 24px;
+    line-height: 1.5;
+    text-align: left;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+}
+
+/* Options Container */
+#options {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 8px;
+}
+
+/* Option Buttons & Generic Buttons */
+button,
+#options button,
+.option-btn {
+    width: 100%;
+    padding: 15px 20px;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: left;
+    color: var(--primary-blue);
+    background-color: var(--off-white);
+    border: 1.5px solid var(--border-color);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    outline: none;
+}
+
+/* Hover & Focus States */
+button:hover,
+#options button:hover,
+.option-btn:hover {
+    background-color: #fffdf5;
+    border-color: var(--gold-primary);
+    color: var(--primary-blue);
+    transform: translateY(-2px);
+    box-shadow: var(--hover-shadow);
+}
+
+button:focus-visible,
+#options button:focus-visible {
+    border-color: var(--gold-primary);
+    box-shadow: 0 0 0 3px var(--gold-glow);
+}
+
+/* Active / Selected / State Classes */
+button.selected,
+#options button.selected {
+    background: var(--royal-blue);
+    color: var(--pure-white);
+    border-color: var(--gold-primary);
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+    font-weight: 600;
+}
+
+button.correct,
+#options button.correct {
+    background-color: #ecfdf5 !important;
+    border-color: var(--success-green) !important;
+    color: #065f46 !important;
+    font-weight: 600;
+}
+
+button.wrong,
+#options button.wrong {
+    background-color: #fef2f2 !important;
+    border-color: var(--error-red) !important;
+    color: #991b1b !important;
+    font-weight: 600;
+}
+
+/* Action Buttons (Submit, Next, Restart) */
+#next-btn,
+#submit-btn,
+#restart-btn,
+.action-btn {
+    text-align: center;
+    justify-content: center;
+    background: var(--gold-gradient);
+    color: var(--primary-blue);
+    font-weight: 700;
+    border: none;
+    margin-top: 16px;
+    padding: 14px 28px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(212, 175, 55, 0.35);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#next-btn:hover,
+#submit-btn:hover,
+#restart-btn:hover,
+.action-btn:hover {
+    background: linear-gradient(135deg, #ffe033 0%, #dfb842 50%, #ba8420 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(212, 175, 55, 0.5);
+    color: #050b14;
+}
+
+/* Result / Score Display */
+#result {
+    margin-top: 24px;
+    padding: 16px 24px;
+    font-size: 1.15rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--pure-white);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1.5px solid var(--gold-primary);
+    border-radius: 12px;
+    max-width: 580px;
+    width: 100%;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2), 0 0 15px var(--gold-glow);
+    animation: fadeIn 0.4s ease-out;
+}
+
+/* Empty state helper */
+#result:empty {
+    display: none;
+}
+
+/* Smooth Fade In Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    #quiz {
+        padding: 24px 20px;
+        border-radius: 16px;
+    }
+
+    #question, h2 {
+        font-size: 1.15rem;
+    }
+
+    button,
+    #options button {
+        padding: 13px 16px;
+        font-size: 0.95rem;
+    }
+}
